@@ -323,13 +323,13 @@ st.markdown(
 )
 
 # Create a connection object.
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=[
-        "https://www.googleapis.com/auth/spreadsheets",
-    ],
-)
-conn = connect(credentials=credentials)
+## credentials = service_account.Credentials.from_service_account_info(
+##    st.secrets["gcp_service_account"],
+##    scopes=[
+ ##       "https://www.googleapis.com/auth/spreadsheets",
+##    ],
+##)
+##conn = connect(credentials=credentials)
 
 # Perform SQL query on the Google Sheet.
 # Uses st.cache to only rerun when the query changes or after 10 min.
@@ -340,15 +340,15 @@ def run_query(query):
     return rows
 
 
-sheet_url = st.secrets[f"private_gsheets_url_lmfs-01"]
-rows = run_query(f'SELECT * FROM "{sheet_url}"')
-df = pd.DataFrame(rows)
-df.set_index("User_ID", inplace=True)
-df = df.sort_values("Score", ascending=False)
+## sheet_url = st.secrets[f"private_gsheets_url_lmfs-01"]
+## rows = run_query(f'SELECT * FROM "{sheet_url}"')
+## df = pd.DataFrame(rows)
+## df.set_index("User_ID", inplace=True)
+## df = df.sort_values("Score", ascending=False)
 
-recording_sheet_url = "https://docs.google.com/spreadsheets/d/12VDAPmJKlEvmvoe8x0f9_N3t2EvuEFg7fS6LqSCTEWA/edit#gid=1961064199"
-rows = run_query(f'SELECT * FROM "{recording_sheet_url}"')
-df_recording = pd.DataFrame(rows)
+## recording_sheet_url = "https://docs.google.com/spreadsheets/d/12VDAPmJKlEvmvoe8x0f9_N3t2EvuEFg7fS6LqSCTEWA/edit#gid=1961064199"
+## rows = run_query(f'SELECT * FROM "{recording_sheet_url}"')
+## df_recording = pd.DataFrame(rows)
 
 
 try:
